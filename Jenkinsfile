@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'docker && linux' 
+        label 'linux' 
     }
     stages {
         stage('checkout') {
