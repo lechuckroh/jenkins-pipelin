@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'linux' 
-    }
+    agent any
     stages {
         stage('checkout') {
             steps {
@@ -9,13 +7,24 @@ pipeline {
             }
         }
         stage('compile') {
+            agent {
+                docker {
+                    image 'node:14'
+                }
+            }
             steps {
-                sh 'echo compile...'
+                sh 'npm install'
             }
         }
         stage('docker image') {
+            when {
+                beforeAgent true
+                expression { BRANCH_NAME ==~ /(main|master|develop|release)/ }
+            }
             steps {
-                sh 'echo build docker image...'
+                script {
+                    def image = docker.build('test')
+                }
             }
         }
     }
