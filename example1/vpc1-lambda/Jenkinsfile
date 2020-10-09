@@ -19,7 +19,7 @@ pipeline {
         }
         stage('package') {
             steps {
-                zip zipFile: 'lambda.zip', archive: false, dir: 'build'
+                sh 'jar cMf lambda.zip -C build/ .'
                 archiveArtifacts artifacts: 'lambda.zip', fingerprint: true
             }
         }
