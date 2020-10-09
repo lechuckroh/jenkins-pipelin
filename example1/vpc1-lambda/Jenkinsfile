@@ -22,7 +22,7 @@ pipeline {
         stage('package') {
             steps {
                 dir('example1/vpc1-lambda') {
-                    sh 'jar cMf lambda.zip -C build/ .'
+                    sh 'jar cMf lambda.zip index.js'
                     archiveArtifacts artifacts: 'lambda.zip', fingerprint: true
                 }
             }
