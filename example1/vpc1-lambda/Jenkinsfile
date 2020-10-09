@@ -13,14 +13,18 @@ pipeline {
                 }
             }
             steps {
-                sh 'npm install'
-                sh 'npm run build'
+                dir('example1/vpc1-lambda') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
             }
         }
         stage('package') {
             steps {
-                sh 'jar cMf lambda.zip -C build/ .'
-                archiveArtifacts artifacts: 'lambda.zip', fingerprint: true
+                dir('example1/vpc1-lambda') {
+                    sh 'jar cMf lambda.zip -C build/ .'
+                    archiveArtifacts artifacts: 'lambda.zip', fingerprint: true
+                }
             }
         }
     }
