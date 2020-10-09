@@ -1,0 +1,1 @@
+# 'terragrunt init' requires at least one *.tf file.

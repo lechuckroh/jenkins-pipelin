@@ -1,0 +1,4 @@
+region: ap-northeast-2
+profile: freetier
+state_dynamodb_table: terraform-lock-example1
+state_s3_bucket: terraform-state-example1
